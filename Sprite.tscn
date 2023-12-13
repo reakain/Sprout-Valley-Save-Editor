@@ -1,0 +1,234 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/file_save.gd" type="Script" id=1]
+[ext_resource path="res://src/VBoxInventory.gd" type="Script" id=2]
+
+[node name="PanelContainer" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 500, 300 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 493.0
+margin_bottom = 593.0
+
+[node name="BtnLoadSave" type="Button" parent="VBoxContainer"]
+margin_right = 486.0
+margin_bottom = 20.0
+text = "Load Save File"
+
+[node name="BtnToPlaintext" type="Button" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 486.0
+margin_bottom = 44.0
+size_flags_vertical = 0
+text = "Save to Plain Text"
+
+[node name="BtnToEncrypted" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 486.0
+margin_bottom = 68.0
+focus_neighbour_top = NodePath("../BtnToPlaintext")
+size_flags_vertical = 0
+text = "Re-Encrypt Save Data"
+
+[node name="HBoxPassphrase" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 486.0
+margin_bottom = 96.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxPassphrase"]
+margin_top = 5.0
+margin_right = 133.0
+margin_bottom = 19.0
+text = "Custom Passphrase: "
+
+[node name="TxtEditPassphrase" type="LineEdit" parent="VBoxContainer/HBoxPassphrase"]
+margin_left = 137.0
+margin_right = 195.0
+margin_bottom = 24.0
+expand_to_text_length = true
+
+[node name="BtnPassphraseUpdate" type="Button" parent="VBoxContainer/HBoxPassphrase"]
+margin_left = 199.0
+margin_right = 486.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Update"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 100.0
+margin_right = 486.0
+margin_bottom = 104.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 108.0
+margin_right = 486.0
+margin_bottom = 272.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 197.0
+margin_bottom = 164.0
+
+[node name="HBoxMoney" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 197.0
+margin_bottom = 24.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxMoney"]
+margin_left = 84.0
+margin_top = 5.0
+margin_right = 135.0
+margin_bottom = 19.0
+text = "Money: "
+
+[node name="TxtMoney" type="LineEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxMoney"]
+margin_left = 139.0
+margin_right = 197.0
+margin_bottom = 24.0
+expand_to_text_length = true
+
+[node name="HBoxFarmingExp" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 197.0
+margin_bottom = 52.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxFarmingExp"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 135.0
+margin_bottom = 19.0
+text = "Farming Experience: "
+
+[node name="TxtFarmingExp" type="LineEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxFarmingExp"]
+margin_left = 139.0
+margin_right = 197.0
+margin_bottom = 24.0
+expand_to_text_length = true
+
+[node name="HBoxMiningExp" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 197.0
+margin_bottom = 80.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxMiningExp"]
+margin_left = 10.0
+margin_top = 5.0
+margin_right = 135.0
+margin_bottom = 19.0
+text = "Mining Experience: "
+
+[node name="TxtMiningExp" type="LineEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxMiningExp"]
+margin_left = 139.0
+margin_right = 197.0
+margin_bottom = 24.0
+expand_to_text_length = true
+
+[node name="HBoxFishingExp" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 84.0
+margin_right = 197.0
+margin_bottom = 108.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxFishingExp"]
+margin_left = 8.0
+margin_top = 5.0
+margin_right = 135.0
+margin_bottom = 19.0
+text = "Fishing Experience: "
+
+[node name="TxtFishingExp" type="LineEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxFishingExp"]
+margin_left = 139.0
+margin_right = 197.0
+margin_bottom = 24.0
+expand_to_text_length = true
+
+[node name="HBoxForagingExp" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 112.0
+margin_right = 197.0
+margin_bottom = 136.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxForagingExp"]
+margin_top = 5.0
+margin_right = 135.0
+margin_bottom = 19.0
+text = "Foraging Experience: "
+
+[node name="TxtForagingExp" type="LineEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxForagingExp"]
+margin_left = 139.0
+margin_right = 197.0
+margin_bottom = 24.0
+expand_to_text_length = true
+
+[node name="HBoxCraftingExp" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 140.0
+margin_right = 197.0
+margin_bottom = 164.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxCraftingExp"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 135.0
+margin_bottom = 19.0
+text = "Crafting Experience: "
+
+[node name="TxtCraftingExp" type="LineEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxCraftingExp"]
+margin_left = 139.0
+margin_right = 197.0
+margin_bottom = 24.0
+expand_to_text_length = true
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+margin_left = 201.0
+margin_right = 205.0
+margin_bottom = 164.0
+
+[node name="VBoxInventory" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 209.0
+margin_right = 313.0
+margin_bottom = 164.0
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxInventory"]
+margin_right = 104.0
+margin_bottom = 14.0
+text = "Player Inventory"
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+margin_left = 317.0
+margin_right = 321.0
+margin_bottom = 164.0
+
+[node name="VBoxChest" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 325.0
+margin_right = 437.0
+margin_bottom = 164.0
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxChest"]
+margin_right = 112.0
+margin_bottom = 14.0
+text = "Storage Inventory"
+
+[connection signal="resized" from="." to="." method="_on_PanelContainer_resized"]
+[connection signal="pressed" from="VBoxContainer/BtnLoadSave" to="." method="_on_BtnLoadSave_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnToPlaintext" to="." method="_on_BtnToPlaintext_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnToEncrypted" to="." method="_on_BtnToEncrypted_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxPassphrase/BtnPassphraseUpdate" to="." method="_on_BtnPassphraseUpdate_pressed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxMoney/TxtMoney" to="." method="_on_TxtMoney_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxFarmingExp/TxtFarmingExp" to="." method="_on_TxtFarmingExp_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxMiningExp/TxtMiningExp" to="." method="_on_TxtMiningExp_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxFishingExp/TxtFishingExp" to="." method="_on_TxtFishingExp_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxForagingExp/TxtForagingExp" to="." method="_on_TxtForagingExp_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxCraftingExp/TxtCraftingExp" to="." method="_on_TxtCraftingExp_text_changed"]
