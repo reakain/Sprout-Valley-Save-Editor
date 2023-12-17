@@ -16,3 +16,5 @@ It reads and saves files to its own user folder, so a little bit of manual copy-
 add item option
 remove money cause it doesn't add money lol
 make inventories a grid?
+
+Used [GDRE](https://github.com/bruvzg/gdsdecomp) to decompile Sprout Valley and get the encription key for the save file.
