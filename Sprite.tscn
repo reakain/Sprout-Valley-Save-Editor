@@ -30,18 +30,28 @@ margin_bottom = 44.0
 size_flags_vertical = 0
 text = "Save to Plain Text"
 
-[node name="BtnToEncrypted" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 48.0
 margin_right = 486.0
-margin_bottom = 68.0
-focus_neighbour_top = NodePath("../BtnToPlaintext")
-size_flags_vertical = 0
+margin_bottom = 88.0
+alignment = 2
+
+[node name="BtnToEncrypted" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_right = 306.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
 text = "Re-Encrypt Save Data"
 
-[node name="HBoxPassphrase" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 72.0
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 310.0
 margin_right = 486.0
-margin_bottom = 96.0
+margin_bottom = 40.0
+text = "Overwrite Save"
+
+[node name="HBoxPassphrase" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 92.0
+margin_right = 486.0
+margin_bottom = 116.0
 alignment = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxPassphrase"]
@@ -64,14 +74,14 @@ size_flags_horizontal = 3
 text = "Update"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 100.0
+margin_top = 120.0
 margin_right = 486.0
-margin_bottom = 104.0
+margin_bottom = 124.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 108.0
+margin_top = 128.0
 margin_right = 486.0
-margin_bottom = 272.0
+margin_bottom = 292.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_right = 197.0
@@ -224,7 +234,7 @@ text = "Storage Inventory"
 [connection signal="resized" from="." to="." method="_on_PanelContainer_resized"]
 [connection signal="pressed" from="VBoxContainer/BtnLoadSave" to="." method="_on_BtnLoadSave_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnToPlaintext" to="." method="_on_BtnToPlaintext_pressed"]
-[connection signal="pressed" from="VBoxContainer/BtnToEncrypted" to="." method="_on_BtnToEncrypted_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/BtnToEncrypted" to="." method="_on_BtnToEncrypted_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxPassphrase/BtnPassphraseUpdate" to="." method="_on_BtnPassphraseUpdate_pressed"]
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxMoney/TxtMoney" to="." method="_on_TxtMoney_text_changed"]
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxFarmingExp/TxtFarmingExp" to="." method="_on_TxtFarmingExp_text_changed"]
