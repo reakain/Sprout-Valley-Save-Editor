@@ -11,6 +11,8 @@ var inventory_contents:Dictionary
 var chest_index = -1
 var chest_contents:Dictionary
 
+var save_editor_defuault_path: = ProjectSettings.globalize_path("user://../Sprout Valley")
+var save_dir: = save_editor_defuault_path
 var save_name: = default_save_name
 var plain_name: = default_plain_name
 var save_copy_name: = default_save_copy_name
@@ -112,17 +114,19 @@ func update_save_data():
 
 
 func _on_BtnLoadSave_pressed():
+	$LoadSaveDialog.set_current_dir(save_dir)
 	$LoadSaveDialog.popup_centered()
-	
 
 
 func _on_BtnToPlaintext_pressed():
 #	save_to_plaintext()
+	$SavePlaintextDialog.set_current_dir(save_dir)
 	$SavePlaintextDialog.popup_centered()
 
 
 func _on_BtnToEncrypted_pressed():
 	#reencode_save()
+	$SaveSaveDialog.set_current_dir(save_dir)
 	$SaveSaveDialog.popup_centered()
 
 
@@ -167,6 +171,7 @@ func _on_LoadSaveDialog_custom_action(action):
 
 func _on_LoadSaveDialog_file_selected(path):
 	save_name = path
+	save_dir = save_name.get_base_dir()
 	load_encrypted()
 	populate_data()
 	$VBoxContainer/HBoxContainer2/BtnToPlaintext.disabled = false
@@ -175,6 +180,7 @@ func _on_LoadSaveDialog_file_selected(path):
 
 func _on_SavePlaintextDialog_file_selected(path):
 	plain_name = path
+	save_dir = plain_name.get_base_dir()
 	update_save_data()
 	save_plain()
 
@@ -182,5 +188,6 @@ func _on_SavePlaintextDialog_file_selected(path):
 
 func _on_SaveSaveDialog_file_selected(path):
 	save_copy_name = path
+	save_dir = save_copy_name.get_base_dir()
 	update_save_data()
 	save_encrypted()
