@@ -6,6 +6,8 @@ const default_save_copy_name = "user://save_state_reencrypt.sav"
 const default_passphrase: = "u)/W87l&9-=~tRsElB"
 
 var save_data:Dictionary
+var stats_index = -1
+var player_index = -1
 var inventory_index = -1
 var inventory_contents:Dictionary
 var chest_index = -1
@@ -68,23 +70,39 @@ func change_passphrase(var new_passphrase):
 
 func populate_data():
 	# Money? Money
-	$VBoxContainer/GridContainer/TxtMoney.text = str(save_data.nodes[0].money_earned)
-	$VBoxContainer/GridContainer/TxtFarmingExp.text = str(save_data.nodes[0].farming_exp)
-	$VBoxContainer/GridContainer/TxtMiningExp.text = str(save_data.nodes[0].mining_exp)
-	$VBoxContainer/GridContainer/TxtFishingExp.text = str(save_data.nodes[0].fishing_exp)
-	$VBoxContainer/GridContainer/TxtForagingExp.text = str(save_data.nodes[0].foraging_exp)
-	$VBoxContainer/GridContainer/TxtCraftingExp.text = str(save_data.nodes[0].crafting_exp)
-	
+#	$VBoxContainer/GridContainer/TxtMoney.text = str(save_data.nodes[0].money_earned)
+#	$VBoxContainer/GridContainer/TxtFarmingExp.text = str(save_data.nodes[0].farming_exp)
+#	$VBoxContainer/GridContainer/TxtMiningExp.text = str(save_data.nodes[0].mining_exp)
+#	$VBoxContainer/GridContainer/TxtFishingExp.text = str(save_data.nodes[0].fishing_exp)
+#	$VBoxContainer/GridContainer/TxtForagingExp.text = str(save_data.nodes[0].foraging_exp)
+#	$VBoxContainer/GridContainer/TxtCraftingExp.text = str(save_data.nodes[0].crafting_exp)
+	stats_index = -1
+	player_index = -1
+	inventory_index = -1
+	chest_index = -1
+	$VBoxContainer/HSplitContainer/VBoxInventory/GridInventory.clear_contents()
+	$VBoxContainer/HSplitContainer/VBoxChest/GridChest.clear_contents()
 	# Find in array with filename res://src/UI/Inventory.tscn  and then looks in contents_manager_contents
 	for i in range(save_data.nodes.size()):
-		if save_data.nodes[i].path == "/root/Game/LevelGenerator/YSort/Player/Inventory":
+		if "Storyline.tscn" in save_data.nodes[i].filename:
+			stats_index = i
+#			$VBoxContainer/GridContainer/TxtMoney.text = str(save_data.nodes[stats_index].money_earned)
+			$VBoxContainer/GridContainer/TxtFarmingExp.text = str(save_data.nodes[stats_index].farming_exp)
+			$VBoxContainer/GridContainer/TxtMiningExp.text = str(save_data.nodes[stats_index].mining_exp)
+			$VBoxContainer/GridContainer/TxtFishingExp.text = str(save_data.nodes[stats_index].fishing_exp)
+			$VBoxContainer/GridContainer/TxtForagingExp.text = str(save_data.nodes[stats_index].foraging_exp)
+			$VBoxContainer/GridContainer/TxtCraftingExp.text = str(save_data.nodes[stats_index].crafting_exp)
+		elif "Player.tscn" in save_data.nodes[i].filename:
+			player_index = i
+			$VBoxContainer/GridContainer/TxtMoney.text = str(save_data.nodes[player_index].coins)
+		elif "Player/Inventory" in save_data.nodes[i].path && "Inventory.tscn" in save_data.nodes[i].filename:
 			inventory_index = i
 			$VBoxContainer/HSplitContainer/VBoxInventory/GridInventory.populate_contents(save_data.nodes[inventory_index].contents_manager_contents)
-		elif save_data.nodes[i].path == "/root/Game/LevelGenerator/YSort/PlayerHouse/Chest/ChestController/Inventory":
+		elif "Inventory.tscn" in save_data.nodes[i].filename && "Chest/ChestController" in save_data.nodes[i].path:
 			chest_index = i
 			#$VBoxContainer/HBoxContainer/VBoxChest.populate_contents(save_data.nodes[chest_index].contents_manager_contents)
 			$VBoxContainer/HSplitContainer/VBoxChest/GridChest.populate_contents(save_data.nodes[chest_index].contents_manager_contents)
-		if inventory_index > 0 && chest_index > 0:
+		if inventory_index >= 0 && chest_index >= 0 && stats_index >= 0 && player_index >= 0:
 			break
 
 #func populate_container(isChest):
@@ -105,12 +123,12 @@ func update_save_data():
 	save_data.nodes[inventory_index].contents_manager_contents = $VBoxContainer/HSplitContainer/VBoxInventory/GridInventory.get_contents()
 	save_data.nodes[chest_index].contents_manager_contents = $VBoxContainer/HSplitContainer/VBoxChest/GridChest.get_contents()
 	#save_data.nodes[chest_index].contents_manager_contents = $VBoxContainer/HBoxContainer/VBoxChest.get_contents()
-	save_data.nodes[0].money_earned = int($VBoxContainer/GridContainer/TxtMoney.text)
-	save_data.nodes[0].farming_exp = float($VBoxContainer/GridContainer/TxtFarmingExp.text)
-	save_data.nodes[0].mining_exp = float($VBoxContainer/GridContainer/TxtMiningExp.text)
-	save_data.nodes[0].fishing_exp = float($VBoxContainer/GridContainer/TxtFishingExp.text)
-	save_data.nodes[0].foraging_exp = float($VBoxContainer/GridContainer/TxtForagingExp.text)
-	save_data.nodes[0].crafting_exp = float($VBoxContainer/GridContainer/TxtCraftingExp.text)
+	save_data.nodes[player_index].coins = int($VBoxContainer/GridContainer/TxtMoney.text)
+	save_data.nodes[stats_index].farming_exp = float($VBoxContainer/GridContainer/TxtFarmingExp.text)
+	save_data.nodes[stats_index].mining_exp = float($VBoxContainer/GridContainer/TxtMiningExp.text)
+	save_data.nodes[stats_index].fishing_exp = float($VBoxContainer/GridContainer/TxtFishingExp.text)
+	save_data.nodes[stats_index].foraging_exp = float($VBoxContainer/GridContainer/TxtForagingExp.text)
+	save_data.nodes[stats_index].crafting_exp = float($VBoxContainer/GridContainer/TxtCraftingExp.text)
 
 
 func _on_BtnLoadSave_pressed():

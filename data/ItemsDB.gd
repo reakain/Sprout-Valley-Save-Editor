@@ -6,6 +6,8 @@ const wood_id = "8c-jn"
 const magic_dust_id = "ks33A"
 const fiber_id = "zT7L7"
 const wood_log_id = "YGeqR"
+const bamboo_id = "70ImL"
+const cactus_id = "24RO9"
 const chest_expansion_id = "085nz"
 const backpack_expansion_id = "tFoU0"
 const fence_id = "NgHbD"
@@ -112,6 +114,26 @@ const water_tile_id = "NMh8O"
 const snow_globe_snowman_id = "1IyQP"
 const snow_globe_penguin_id = "1ESUH"
 const snow_globe_santa_id = "bbsdO"
+const cupid_statue_id = "rC3BP"
+const chicken_coop_id = "jCkaZ"
+const chicken_egg_id = "2cMaQ"
+const eggs_minigame = "xPB3b"
+const cow_barn_id = "MBdE9"
+const milk_id = "hMZuU"
+const cheese_id = "Zhydx"
+const cheese_press_id = "IQQyJ"
+const bamboo_chair_id = "uMRKU"
+const bamboo_desk_id = "x6WfV"
+const cactus_chair_id = "k4xxX"
+const cactus_desk_id = "tnwPs"
+const fish_trap_id = "PcdyE"
+const cactus_fruit_maker_id = "RNZn0"
+const cactus_fruit_id = "MD1aA"
+const halloween_treats = "6mKLS"
+const candle = "9O0q1"
+const zombie_hand = "yCBaN"
+const flying_broom = "dH08F"
+const momo_pet = "Mfcqz"
 
 var items_dict = {}
 var plants_dict = {}
@@ -151,8 +173,148 @@ func _ready():
 	buffs_dict = data[11]
 	seedlings_dict = data[12]
 
+#	if Expansions.new_frontiers:
+#		_merge_json("res://data/New Frontiers Crafts.json", crafts_dict)
+
+#	if Dlcs.momo_pet:
+#		items_dict[momo_pet] = {
+#			"name":"ITEM_MOMO", 
+#			"frame":394, 
+#			"consumable":0, 
+#			"dish":0, 
+#			"plant":null, 
+#			"seed":null, 
+#			"seedling":null, 
+#			"buy":0, 
+#			"sell":0, 
+#			"shop":0, 
+#			"shop_type":0, 
+#			"energy":0, 
+#			"quality":0, 
+#			"basket":null, 
+#			"construction":null, 
+#			"construction_frame":null, 
+#			"furniture":null, 
+#			"fish_tier":null, 
+#			"fish_shadow":null, 
+#			"equipment":"pet", 
+#			"color":"#69448d"
+#		}
+
 	for key in crafts_dict.keys():
 		crafts_dict[key]["ingredients"] = str2var(crafts_dict[key]["ingredients"])
+
+func _merge_json(json_path:String, dest:Dictionary):
+	var data_file = File.new()
+
+	if not data_file.file_exists(json_path):
+		return 
+
+	data_file.open(json_path, File.READ)
+
+	var data = parse_json(data_file.get_as_text())
+
+	for key in data:
+		dest[key] = data[key]
+
+func is_festive_consumable(id):
+	return id in ["EkMKC", "PaUMo", "q3YrC", "lHQMB", "Fhh5h"]
+
+#func get_festive_rewards(id):
+#	var rewards = []
+#	var weights = {}
+#	var amount = 1
+#	var bag = RNGTools.WeightedBag.new()
+#
+#	match id:
+#		"EkMKC":
+#			weights["8c-jn:10"] = 500
+#			weights["Hy8Ni:10"] = 500
+#			weights["zT7L7:10"] = 500
+#			weights["CpIGU:10"] = 500
+#			weights["O5P8T:5"] = 500
+#			weights["wEjhx:5"] = 500
+#			weights["l_qFj:5"] = 500
+#			weights["HgWvv:5"] = 500
+#			weights["VhUF9"] = 10
+#
+#			amount = 1
+#		"PaUMo":
+#			weights["8c-jn:15"] = 500
+#			weights["Hy8Ni:15"] = 500
+#			weights["zT7L7:15"] = 500
+#			weights["CpIGU:15"] = 500
+#			weights["O5P8T:10"] = 500
+#			weights["wEjhx:10"] = 500
+#			weights["l_qFj:10"] = 500
+#			weights["HgWvv:10"] = 500
+#			weights["VhUF9"] = 10
+#
+#			amount = 1
+#		"q3YrC":
+#			weights["3Blua:10"] = 500
+#			weights["HWFzx:10"] = 500
+#			weights["ks33A:10"] = 500
+#			weights["v6P5G:10"] = 500
+#			weights["gg_Id:10"] = 500
+#			weights["IEhhV"] = 500
+#			weights["J5SPX"] = 500
+#			weights["u83a7"] = 500
+#			weights["dsy9t:10"] = 500
+#			weights["hJnvE:10"] = 500
+#			weights["2nJG6:5"] = 500
+#			weights["VhUF9"] = 10
+#
+#			amount = round(rand_range(1, 2))
+#		"lHQMB":
+#			weights["3Blua:20"] = 500
+#			weights["HWFzx:20"] = 500
+#			weights["ks33A:20"] = 500
+#			weights["v6P5G:20"] = 500
+#			weights["gg_Id:20"] = 500
+#			weights["dsy9t:20"] = 500
+#			weights["hJnvE:20"] = 500
+#			weights["2nJG6:10"] = 500
+#			weights["XArCo"] = 300
+#			weights["W3Ut9"] = 300
+#			weights["sMrY8"] = 300
+#			weights["2aJgV"] = 100
+#			weights["eaAIT"] = 100
+#			weights["Ex72O"] = 100
+#			weights["b9ArP"] = 100
+#			weights["VhUF9"] = 50
+#			weights["VhUF9:3"] = 10
+#			weights["085nz"] = 10
+#			weights["tFoU0"] = 10
+#
+#			amount = round(rand_range(1, 2))
+#		"Fhh5h":
+#			weights["VhUF9:3"] = 500
+#			weights["ks33A:100"] = 500
+#			weights["2aJgV"] = 300
+#			weights["b9ArP"] = 300
+#			weights["085nz"] = 300
+#			weights["tFoU0"] = 300
+#			weights["OSj9y"] = 300
+#			weights["BdJI0"] = 300
+#			weights["L4-kF"] = 300
+#			weights["OIa3q"] = 300
+#			weights["jVrHI"] = 100
+#			weights["L4-kF:5"] = 100
+#			weights["OIa3q:5"] = 100
+#			weights["VhUF9:10"] = 100
+#			weights["VhUF9:50"] = 5
+#
+#			amount = round(rand_range(1, 3))
+#
+#	bag.weights = weights
+#
+#	for i in amount:
+#		var reward = RNGTools.pick_weighted(bag)
+#
+#		rewards.append(reward)
+#
+#	return rewards
 
 func by_id(id:String):
 	if not id:

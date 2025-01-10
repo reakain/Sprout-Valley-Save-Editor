@@ -11,6 +11,10 @@ func populate_contents(inventory_content):
 	container_content = inventory_content
 	for key in container_content.keys():
 		add_item(key, container_content[key])
+
+func clear_contents():
+	for child_box in self.get_children():
+		self.remove_child(child_box)
 	
 func get_contents():
 	for key in ui_items.keys():

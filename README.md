@@ -1,7 +1,7 @@
 # Sprout-Valley-Save-Editor
 I just wanted to be lazy about experience gain.
 
-Made with Godot 3.5 LTS, and based on the [Itch.io version of Sprout Valley](https://zefrost.itch.io/sprout-valley). I used the version released in December 2023, and cannot guarantee functionality with more recent versions. Primarily, I don't know how the item database might have changed as new items have been introduced, which changes the structure of the save file. I also cannot guarantee functionality with the Steam version of the game.
+Made with Godot 3.5 LTS, and based on the [Itch.io version of Sprout Valley](https://zefrost.itch.io/sprout-valley). I updated with the version released in September 2024, and cannot guarantee functionality with more recent versions. Primarily, I don't know how the item database might have changed as new items have been introduced, which changes the structure of the save file. I also cannot guarantee functionality with the Steam version of the game.
 
 The latest version of the compiled save editor can be found in the [releases](https://github.com/reakain/Sprout-Valley-Save-Editor/releases).
 
@@ -21,6 +21,6 @@ Experience level up values are as shown below. Should set your experience to jus
 The save editor also allows for:
  - Add items to your inventory or storage (use the item drop down selectors)
  - Change the quantity of a specific item
- - Remove money (it doesn't add money for... reasons??)
+ - Changing coins/money
 
 When developing this, I used [GDRE](https://github.com/bruvzg/gdsdecomp) to decompile Sprout Valley and get the encription key for the save file. It was found in res/src/Utils/SaveState.gd so if newer versions of the game change the passphrase, that's a method to find it.

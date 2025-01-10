@@ -12,6 +12,12 @@ func populate_contents(inventory_content):
 	for key in container_content.keys():
 		add_item(key, container_content[key])
 	
+func clear_contents():
+	var child_boxes = self.get_children()
+	for child_box in child_boxes:
+		if (child_box.name == "item_box"):
+			self.remove_child(child_box)
+	
 func get_contents():
 	for key in ui_items.keys():
 		container_content[key] = int(ui_items[key].text)
@@ -20,6 +26,7 @@ func get_contents():
 func add_item(item_id,item_num):
 	var item_info = ItemsDb.by_id(item_id)
 	var itemhbox = HBoxContainer.new()
+	itemhbox.name = "item_box"
 	itemhbox.alignment = ALIGN_END
 	self.add_child(itemhbox)
 	var itemicon = Sprite.new()
